@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include 'config/koneksi.php';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -22,9 +22,12 @@ include 'koneksi.php';
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-end mb-3">
-            <a href="tambah.php" class="btn btn-success">
-                <i class="fas fa-plus-circle me-1"></i>Tambah Mahasiswa
+        <div class="d-flex justify-content-end mb-3 gap-2">
+            <a href="mahasiswa/tampil.php" class="btn btn-success">
+                <i class="fas fa-user-circle me-1"></i>Lihat Data Mahasiswa
+            </a>
+            <a href="program-studi/tampil.php" class="btn btn-primary">
+                <i class="fas fa-file me-1"></i>Lihat Data Program Studi
             </a>
         </div>
         <div class="card shadow">
@@ -38,35 +41,31 @@ include 'koneksi.php';
                                 <th>Nama Mahasiswa</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
-                                <th class="text-center" width="120">Aksi</th>
+                                <th>Program Studi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $query = "SELECT * FROM mahasiswa ORDER BY nim";
+                            $query = "SELECT 
+                                        m.*, 
+                                        p.nama_prodi, 
+                                        p.jenjang, 
+                                        p.akreditasi 
+                                      FROM mahasiswa m
+                                      LEFT JOIN program_studi p ON m.program_studi_id = p.id";
                             $result = mysqli_query($koneksi, $query);
                             $no = 1;
 
                             while ($row = mysqli_fetch_assoc($result)) {
                             ?>
-                            <tr>
-                                <td class="text-center"><?= $no++ ?></td>
-                                <td><strong><?= $row['nim'] ?></strong></td>
-                                <td><?= $row['nama_mhs'] ?></td>
-                                <td><?= date('d/m/Y', strtotime($row['tgl_lahir'])) ?></td>
-                                <td><?= $row['alamat'] ?></td>
-                                <td class="text-center">
-                                    <a href="edit.php?nim=<?= $row['nim'] ?>" class="btn btn-sm btn-warning"
-                                        title="Edit Data">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="hapus.php?nim=<?= $row['nim'] ?>" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Yakin hapus data <?= $row['nama_mhs'] ?>?')"
-                                        title="Hapus Data">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center"><?= $no++ ?></td>
+                                    <td><strong><?= $row['nim'] ?></strong></td>
+                                    <td><?= $row['nama_mhs'] ?></td>
+                                    <td><?= date('d/m/Y', strtotime($row['tgl_lahir'])) ?></td>
+                                    <td><?= $row['alamat'] ?></td>
+                                    <td><?= $row['jenjang'] ?> <?= $row['nama_prodi'] ?> </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
