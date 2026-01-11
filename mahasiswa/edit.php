@@ -42,7 +42,7 @@ $data = mysqli_fetch_assoc($query);
                     <h1 class="display-6 fw-bold"><i class="fas fa-edit me-2"></i>Edit Data Mahasiswa</h1>
                     <p class="lead mb-0">Perbarui informasi mahasiswa</p>
                 </div>
-                <a href="tampil.php" class="btn btn-light">
+                <a href="../index.php?page=data_mahasiswa" class="btn btn-light">
                     <i class="fas fa-arrow-left me-1"></i>Kembali
                 </a>
             </div>
@@ -137,7 +137,7 @@ if (isset($_POST['submit'])) {
     if ($update) {
         echo "<script>
                 alert('Data mahasiswa berhasil diubah!');
-                window.location.href = 'tampil.php';
+                window.location.href = '../index.php?page=data_mahasiswa';
               </script>";
     } else {
         echo "<script>

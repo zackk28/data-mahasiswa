@@ -1,5 +1,5 @@
 <?php
-include '../config/koneksi.php';
+include 'config/koneksi.php';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -24,12 +24,7 @@ include '../config/koneksi.php';
         </div>
         <div class="d-flex justify-content-between mb-3">
             <div>
-                <a href="../index.php" class="btn btn-success">
-                    <i class="fas fa-home me-1"></i>Halaman Utama
-                </a>
-            </div>
-            <div>
-                <a href="tambah.php" class="btn btn-primary">
+                <a href="program-studi/tambah.php" class="btn btn-primary">
                     <i class="fas fa-plus-circle me-1"></i>Tambah Program Studi
                 </a>
             </div>
@@ -63,11 +58,11 @@ include '../config/koneksi.php';
                                     <td><?= $row['akreditasi'] ?></td>
                                     <td><?= $row['keterangan'] ?></td>
                                     <td class="text-center">
-                                        <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"
+                                        <a href="program-studi/edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning"
                                             title="Edit Data">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="hapus.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
+                                        <a href="program-studi/hapus.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Yakin hapus data <?= $row['nama_prodi'] ?>?')"
                                             title="Hapus Data">
                                             <i class="fas fa-trash-alt"></i>

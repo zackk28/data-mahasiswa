@@ -2,15 +2,34 @@
 include '../config/koneksi.php';
 
 if (isset($_GET['nim'])) {
-    $nim = $_GET['nim'];
 
-    $hapus = mysqli_query($koneksi, "DELETE FROM mahasiswa WHERE nim='$nim'");
+    $nim = mysqli_real_escape_string($koneksi, $_GET['nim']);
+
+    $hapus = mysqli_query(
+        $koneksi,
+        "DELETE FROM mahasiswa WHERE nim = '$nim'"
+    );
 
     if ($hapus) {
-        header("location: tampil.php?pesan=Data berhasil dihapus");
+        echo "
+            <script>
+                alert('Data mahasiswa berhasil dihapus');
+                window.location.href = '../index.php?page=data_mahasiswa';
+            </script>
+        ";
     } else {
-        header("location: tampil.php?pesan=Gagal menghapus data");
+        echo "
+            <script>
+                alert('Gagal menghapus data mahasiswa');
+                window.location.href = '../index.php?page=data_mahasiswa';
+            </script>
+        ";
     }
 } else {
-    header("location: tampil.php");
+    echo "
+        <script>
+            alert('NIM tidak ditemukan');
+            window.location.href = '../index.php?page=data_mahasiswa';
+        </script>
+    ";
 }

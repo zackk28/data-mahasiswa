@@ -2,15 +2,34 @@
 include '../config/koneksi.php';
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
 
-    $hapus = mysqli_query($koneksi, "DELETE FROM program_studi WHERE id='$id'");
+    $id = intval($_GET['id']);
+
+    $hapus = mysqli_query(
+        $koneksi,
+        "DELETE FROM program_studi WHERE id = $id"
+    );
 
     if ($hapus) {
-        header("location: tampil.php?pesan=Data berhasil dihapus");
+        echo "
+            <script>
+                alert('Data program studi berhasil dihapus');
+                window.location.href = '../index.php?page=data_prodi';
+            </script>
+        ";
     } else {
-        header("location: tampil.php?pesan=Gagal menghapus data");
+        echo "
+            <script>
+                alert('Gagal menghapus data program studi');
+                window.location.href = '../index.php?page=data_prodi';
+            </script>
+        ";
     }
 } else {
-    header("location: tampil.php");
+    echo "
+        <script>
+            alert('ID tidak ditemukan');
+            window.location.href = '../index.php?page=data_prodi';
+        </script>
+    ";
 }

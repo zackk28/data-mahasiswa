@@ -21,7 +21,7 @@ include '../config/koneksi.php';
                     <h1 class="display-6 fw-bold"><i class="fas fa-user-plus me-2"></i>Tambah Data Mahasiswa</h1>
                     <p class="lead mb-0">Tambah data mahasiswa baru</p>
                 </div>
-                <a href="tampil.php" class="btn btn-light">
+                <a href="../index.php?page=data_mahasiswa" class="btn btn-light">
                     <i class="fas fa-arrow-left me-1"></i>Kembali
                 </a>
             </div>
@@ -128,7 +128,7 @@ if (isset($_POST['submit'])) {
     if ($insert) {
         echo "<script>
                 alert('Data mahasiswa berhasil ditambahkan!');
-                window.location.href = 'tampil.php';
+                window.location.href = '../index.php?page=data_mahasiswa';
               </script>";
     } else {
         echo "<script>
