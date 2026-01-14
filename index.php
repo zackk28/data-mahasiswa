@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,6 +62,24 @@
                             <i class="fas fa-graduation-cap me-1"></i>Program Studi
                         </a>
                     </li>
+                    <?php if (isset($_SESSION['login']) && $_SESSION['login'] === TRUE): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="auth/logout.php">
+                                <i class="fas fa-sign-out-alt me-1"></i>Logout (<?= isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : 'User' ?>)
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="auth/login.php">
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="auth/register.php">
+                                <i class="fas fa-user-plus me-1"></i>Register
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
